@@ -123,71 +123,83 @@ function initLeaderAvatars() {
 function initNewsFeed() {
     const newsCards = document.querySelectorAll('.news-card');
     
-    // Content variations for each card title (keeping titles static)
-    const newsContentVariations = {
-        'Breaking News': [
-            'Energy tariffs trigger 40% Industrial Goods shortage across MoonFactory.',
-            'Supply chain collapse: 67% of Consumer Goods stuck at NorthGuard borders.',
-            'Trade war escalates: TheBorg bans all Raw Materials exports immediately.',
-            'Economic summit chaos: Leaders walk out after "mandatory happiness tax" proposal.'
-        ],
-        'Leader Goes Rogue': [
-            'CEO ElonGates: "Launching all inflation into space via artisanal rockets!"',
-            'Emperor NorthGuard: "Decreeing thermodynamics illegal. Physics is theft!"',
-            'ChairBot Xi: "Instituting AI-only currency. Humans may apply for loans."',
-            'President BailoutBro: "Every citizen gets free money printer. Democracy!"'
-        ],
-        'Numbers Go Vertical': [
-            'AmeriCorp: GDP -23%, Inflation +89%, Stability plummets to chaos tier.',
-            'MoonFactory: Energy shortage triggers 156% Consumer Goods price spike.',
-            'The Borg: Trade balance swings $847B as tariff war intensifies.',
-            'NorthGuard: Unemployment hits 34% after banning "unpatriotic numbers."'
-        ],
-        'You Cash Out': [
-            'Your "Supply Chain Meltdown" prediction pays 8.4× on chaos cascade.',
-            'AI Forecaster Network consensus bet on tariff war nets 12× returns.',
-            'Energy crisis prediction market closes: You banked 340% gains.',
-            'Trade bloc collapse bet pays out: Your chaos intel was pure gold.'
-        ]
-    };
+    // Short content variations for each card title (keeping titles static)
+    const newsContentSets = [
+        {
+            'Breaking News': 'Supply chains snap. Raw materials banned.',
+            'Leader Goes Rogue': 'Elon Gates: "Deflation is theft!"',
+            'Numbers Go Vertical': 'AmeriCorp inflation +156%. Chaos erupts.',
+            'You Cash Out': 'Your energy bet pays 9.2×.'
+        },
+        {
+            'Breaking News': 'Trade war escalates. Borders close.',
+            'Leader Goes Rogue': 'MarGin Lei bans all economics.',
+            'Numbers Go Vertical': 'MoonFactory GDP -89%. Pure chaos.',
+            'You Cash Out': 'Tariff prediction nets 12× returns.'
+        },
+        {
+            'Breaking News': 'Energy crisis triggers mass shortages.',
+            'Leader Goes Rogue': 'Pavel Gazpumpsky prints infinity money.',
+            'Numbers Go Vertical': 'PumpFederation unemployment hits 67%.',
+            'You Cash Out': 'Supply chaos bet triples payout.'
+        },
+        {
+            'Breaking News': 'Economic summit ends in chaos.',
+            'Leader Goes Rogue': 'Justin Splurgeau: "Math is canceled!"',
+            'Numbers Go Vertical': 'MapleDominion stability plummets to zero.',
+            'You Cash Out': 'Trade collapse prediction pays 15×.'
+        },
+        {
+            'Breaking News': 'Currency wars reach peak insanity.',
+            'Leader Goes Rogue': 'Boliz U-turney launches moon tariffs.',
+            'Numbers Go Vertical': 'ExitLand trade balance swings $2T.',
+            'You Cash Out': 'Chaos cascade bet hits jackpot.'
+        },
+        {
+            'Breaking News': 'Industrial production grinds to halt.',
+            'Leader Goes Rogue': 'Christine Laglord: "Reality is optional!"',
+            'Numbers Go Vertical': 'BailoutUnion inflation breaks calculators.',
+            'You Cash Out': 'Market meltdown prediction pays 8×.'
+        }
+    ];
     
-    function updateNewsCard(cardIndex) {
-        const card = newsCards[cardIndex];
-        if (!card) return;
+    let currentSetIndex = 0;
+    
+    function updateAllNewsCards() {
+        const currentSet = newsContentSets[currentSetIndex % newsContentSets.length];
         
-        const titleElement = card.querySelector('.news-title');
-        const contentElement = card.querySelector('.news-description');
-        
-        if (!titleElement || !contentElement) return;
-        
-        // Get the current title (keep it static)
-        const currentTitle = titleElement.textContent.trim();
-        
-        // Get content variations for this title
-        const variations = newsContentVariations[currentTitle];
-        if (!variations) return;
-        
-        // Pick a random content variation
-        const randomContent = variations[Math.floor(Math.random() * variations.length)];
-        
-        // Add update animation
-        card.style.transform = 'scale(0.95)';
-        card.style.opacity = '0.7';
-        
-        setTimeout(() => {
-            // Only update content, keep title the same
-            contentElement.textContent = randomContent;
+        newsCards.forEach((card, index) => {
+            const titleElement = card.querySelector('.news-title');
+            const contentElement = card.querySelector('.news-description');
             
-            card.style.transform = 'scale(1)';
-            card.style.opacity = '1';
-        }, 200);
+            if (!titleElement || !contentElement) return;
+            
+            const currentTitle = titleElement.textContent.trim();
+            const newContent = currentSet[currentTitle];
+            
+            if (!newContent) return;
+            
+            // Add update animation with slight delay for each card
+            setTimeout(() => {
+                card.style.transform = 'scale(0.95)';
+                card.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    contentElement.textContent = newContent;
+                    
+                    card.style.transform = 'scale(1)';
+                    card.style.opacity = '1';
+                }, 200);
+            }, index * 100); // Stagger animations by 100ms
+        });
+        
+        currentSetIndex++;
     }
     
-    // Update news cards randomly
+    // Update all news cards simultaneously every 4 seconds
     setInterval(() => {
-        const randomCard = Math.floor(Math.random() * newsCards.length);
-        updateNewsCard(randomCard);
-    }, 3000);
+        updateAllNewsCards();
+    }, 4000);
 }
 
 // Scroll-triggered animations
