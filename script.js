@@ -122,64 +122,65 @@ function initLeaderAvatars() {
 // News feed animations
 function initNewsFeed() {
     const newsCards = document.querySelectorAll('.news-card');
-    const newsUpdates = [
-        {
-            header: 'Breaking News',
-            content: '12:39 PM: Fed freezes rate hikes. Markets rally. Global liquidity fears ease.'
-        },
-        {
-            header: 'Leader Goes Rogue',
-            content: 'CEO ElonGates: "Deflation is theft! Issuing Universal Abundance Credits NOW!"'
-        },
-        {
-            header: 'Numbers Go Vertical',
-            content: 'AmeriCorp inflation +90%. National Stability -40%. Pure chaos.'
-        },
-        {
-            header: 'You Cash Out',
-            content: '12:42 PM: Your \'Hyperinflation: YES\' prediction market bet pays 6×. Easy money.'
-        },
-        {
-            header: 'Market Meltdown',
-            content: 'Trade wars escalate. Currency volatility hits 15-year high. Opportunity knocks.'
-        },
-        {
-            header: 'AI Rebellion',
-            content: 'Leader Bot-3000: "Instituting mandatory happiness taxes. Economics is now illegal."'
-        },
-        {
-            header: 'Profit Alert',
-            content: '1:15 PM: Your "Supply Chain Chaos" bet just tripled. The machines love you.'
-        },
-        {
-            header: 'Economic Apocalypse',
-            content: 'All sixteen leaders agree on something. Markets freeze in terror. Time to buy?'
-        }
-    ];
     
-    let newsIndex = 0;
+    // Content variations for each card title (keeping titles static)
+    const newsContentVariations = {
+        'Breaking News': [
+            'Energy tariffs trigger 40% Industrial Goods shortage across MoonFactory.',
+            'Supply chain collapse: 67% of Consumer Goods stuck at NorthGuard borders.',
+            'Trade war escalates: TheBorg bans all Raw Materials exports immediately.',
+            'Economic summit chaos: Leaders walk out after "mandatory happiness tax" proposal.'
+        ],
+        'Leader Goes Rogue': [
+            'CEO ElonGates: "Launching all inflation into space via artisanal rockets!"',
+            'Emperor NorthGuard: "Decreeing thermodynamics illegal. Physics is theft!"',
+            'ChairBot Xi: "Instituting AI-only currency. Humans may apply for loans."',
+            'President BailoutBro: "Every citizen gets free money printer. Democracy!"'
+        ],
+        'Numbers Go Vertical': [
+            'AmeriCorp: GDP -23%, Inflation +89%, Stability plummets to chaos tier.',
+            'MoonFactory: Energy shortage triggers 156% Consumer Goods price spike.',
+            'The Borg: Trade balance swings $847B as tariff war intensifies.',
+            'NorthGuard: Unemployment hits 34% after banning "unpatriotic numbers."'
+        ],
+        'You Cash Out': [
+            'Your "Supply Chain Meltdown" prediction pays 8.4× on chaos cascade.',
+            'AI Forecaster Network consensus bet on tariff war nets 12× returns.',
+            'Energy crisis prediction market closes: You banked 340% gains.',
+            'Trade bloc collapse bet pays out: Your chaos intel was pure gold.'
+        ]
+    };
     
     function updateNewsCard(cardIndex) {
         const card = newsCards[cardIndex];
         if (!card) return;
         
-        const header = card.querySelector('.news-title');
-        const content = card.querySelector('.news-description');
-        const newsItem = newsUpdates[newsIndex % newsUpdates.length];
+        const titleElement = card.querySelector('.news-title');
+        const contentElement = card.querySelector('.news-description');
+        
+        if (!titleElement || !contentElement) return;
+        
+        // Get the current title (keep it static)
+        const currentTitle = titleElement.textContent.trim();
+        
+        // Get content variations for this title
+        const variations = newsContentVariations[currentTitle];
+        if (!variations) return;
+        
+        // Pick a random content variation
+        const randomContent = variations[Math.floor(Math.random() * variations.length)];
         
         // Add update animation
         card.style.transform = 'scale(0.95)';
         card.style.opacity = '0.7';
         
         setTimeout(() => {
-            header.textContent = newsItem.header;
-            content.textContent = newsItem.content;
+            // Only update content, keep title the same
+            contentElement.textContent = randomContent;
             
             card.style.transform = 'scale(1)';
             card.style.opacity = '1';
         }, 200);
-        
-        newsIndex++;
     }
     
     // Update news cards randomly
