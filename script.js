@@ -845,7 +845,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Enhanced intermittent title flicker effects
 function initFrequentFlickers() {
-    const titles = document.querySelectorAll('.section-title, .hero-title');
+    // Only target the hero title for flicker effects
+    const heroTitle = document.querySelector('.hero-title');
+    if (!heroTitle) return;
     
          // Type 1: Classic glitch flicker
      function createGlitchFlicker(title) {
@@ -1036,38 +1038,13 @@ function initFrequentFlickers() {
         createScanLineFlicker
     ];
     
-    // Moderate flicker for individual titles
-    titles.forEach(title => {
-        setInterval(() => {
-            if (Math.random() < 0.3) { // 30% chance every 1-4 seconds
-                const randomFlicker = flickerTypes[Math.floor(Math.random() * flickerTypes.length)];
-                randomFlicker(title);
-            }
-        }, 1000 + Math.random() * 3000); // Every 1-4 seconds
-    });
-    
-    // Extra flicker specifically for hero title
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        setInterval(() => {
-            if (Math.random() < 0.45) { // 45% chance every 1-3 seconds for hero title
-                const randomFlicker = flickerTypes[Math.floor(Math.random() * flickerTypes.length)];
-                randomFlicker(heroTitle);
-            }
-        }, 1000 + Math.random() * 2000); // Every 1-3 seconds
-    }
-    
-    // Occasional intense flicker sequence
+    // Flicker only for hero title
     setInterval(() => {
-        if (Math.random() < 0.23) { // 23% chance every 8-16 seconds
-            titles.forEach((title, index) => {
-                setTimeout(() => {
-                    const randomFlicker = flickerTypes[Math.floor(Math.random() * flickerTypes.length)];
-                    randomFlicker(title);
-                }, index * 300);
-            });
+        if (Math.random() < 0.45) { // 45% chance every 1-3 seconds for hero title
+            const randomFlicker = flickerTypes[Math.floor(Math.random() * flickerTypes.length)];
+            randomFlicker(heroTitle);
         }
-    }, 8000 + Math.random() * 8000); // Every 8-16 seconds
+    }, 1000 + Math.random() * 2000); // Every 1-3 seconds
 }
 
 // Hero video initialization
