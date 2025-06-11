@@ -196,15 +196,10 @@ function initNewsFeed() {
         currentSetIndex++;
     }
     
-    // Update all news cards simultaneously every 5-6 seconds
-    function scheduleNextUpdate() {
-        setTimeout(() => {
-            updateAllNewsCards();
-            scheduleNextUpdate(); // Schedule the next update
-        }, 5000 + Math.random() * 1000); // 5-6 seconds random interval
-    }
-    
-    scheduleNextUpdate(); // Start the update cycle
+    // Update all news cards simultaneously every 7 seconds
+    setInterval(() => {
+        updateAllNewsCards();
+    }, 7000);
 }
 
 // Scroll-triggered animations
