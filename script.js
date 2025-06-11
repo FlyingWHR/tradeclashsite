@@ -196,10 +196,10 @@ function initNewsFeed() {
         currentSetIndex++;
     }
     
-    // Update all news cards simultaneously every 7 seconds
+    // Update all news cards simultaneously every 10 seconds
     setInterval(() => {
         updateAllNewsCards();
-    }, 7000);
+    }, 10000);
 }
 
 // Scroll-triggered animations
