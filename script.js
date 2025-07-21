@@ -95,13 +95,13 @@ function initLeaderAvatars() {
             
             setTimeout(() => {
                 if (avatar.classList.contains('rolling-slow')) {
-                    avatar.style.animationDuration = '20s';
+                    avatar.style.animationDuration = '40s';
                 } else if (avatar.classList.contains('rolling-medium')) {
-                    avatar.style.animationDuration = '15s';
+                    avatar.style.animationDuration = '30s';
                 } else if (avatar.classList.contains('rolling-fast')) {
-                    avatar.style.animationDuration = '8s';
+                    avatar.style.animationDuration = '20s';
                 } else {
-                    avatar.style.animationDuration = '15s'; // default
+                    avatar.style.animationDuration = '30s'; // default
                 }
             }, 3000);
             

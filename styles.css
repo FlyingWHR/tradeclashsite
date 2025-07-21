@@ -1,3 +1,15 @@
+/* Font Face Declarations */
+@font-face {
+    font-family: 'Hanson-Bold';
+    src: url('./fonts/Hanson-Bold.woff2') format('woff2'),
+         url('./fonts/Hanson-Bold.woff') format('woff'),
+         url('./fonts/Hanson-Bold.ttf') format('truetype'),
+         url('./fonts/Hanson-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* CSS Variables from Figma Design */
 :root {
     /* Colors */
@@ -12,7 +24,7 @@
     --accent-gradient: linear-gradient(90deg, #ffffff 0%, #ffffffcc 100%);
     
     /* Typography */
-    --font-display: 'DIN Alternate', sans-serif;
+    --font-display: 'Hanson-Bold', 'DIN Alternate', sans-serif;
     --font-body: 'Inter', sans-serif;
     
     /* Font Sizes */
@@ -193,7 +205,7 @@ em {
 }
 
 .section-title {
-    font-family: 'DIN Alternate', 'DIN Alternate Placeholder', sans-serif;
+    font-family: var(--font-display);
     font-size: 52px;
     font-weight: 700;
     line-height: 115%;
@@ -321,7 +333,7 @@ em {
 }
 
 .hero-title {
-    font-family: 'DIN Alternate', 'DIN Alternate Placeholder', sans-serif;
+    font-family: var(--font-display);
     font-size: 120px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -924,7 +936,7 @@ em {
 }
 
 .cta-title {
-    font-family: 'DIN Alternate', 'DIN Alternate Placeholder', sans-serif;
+    font-family: var(--font-display);
     font-size: 80px;
     font-weight: 700;
     line-height: 115%;
