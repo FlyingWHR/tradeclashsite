@@ -451,15 +451,17 @@ em {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(0, 0, 0, 1);
     border-radius: 999px;
-    padding: 16px 24px;
-    font-family: 'DIN Alternate', sans-serif;
+    padding: 18px 24px 16px 24px;
+    font-family: 'Hanson-Bold', sans-serif;
     font-weight: 700;
     font-size: 24px;
     color: #000000;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .cta-button.primary {
@@ -470,7 +472,7 @@ em {
 .cta-button.secondary {
     background: #ffffff;
     color: #000000;
-    font-family: 'DIN Alternate', sans-serif;
+    font-family: 'Hanson-Bold', sans-serif;
     font-size: 24px;
     font-weight: 700;
 }
@@ -478,6 +480,10 @@ em {
 .cta-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.cta-button svg {
+    vertical-align: middle;
 }
 
 /* Scroll Indicator */

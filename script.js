@@ -315,8 +315,8 @@ function initCTAButtons() {
             setTimeout(() => {
                 button.style.transform = '';
                 
-                // Redirect to Google Form
-                window.open('https://docs.google.com/forms/d/e/1FAIpQLSfEF9XgUx7Waom39gKnusRi4XTWOVJyl10uYB9ecXkhvnY6ig/viewform', '_blank');
+                // Redirect to sim.tradeclash.xyz
+                window.open('https://sim.tradeclash.xyz/', '_blank');
             }, 150);
         });
         
