@@ -1,13 +1,11 @@
 /* Font Face Declarations */
 @font-face {
     font-family: 'Hanson-Bold';
-    src: url('./fonts/Hanson-Bold.woff2') format('woff2'),
-         url('./fonts/Hanson-Bold.woff') format('woff'),
-         url('./fonts/Hanson-Bold.ttf') format('truetype'),
+    src: url('./fonts/Hanson-Bold.ttf') format('truetype'),
          url('./fonts/Hanson-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
-    font-display: swap;
+    font-display: block; /* Prevents FOUT for critical text */
 }
 
 /* CSS Variables from Figma Design */
