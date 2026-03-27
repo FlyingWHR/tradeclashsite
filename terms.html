@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .terms-container {
-            background-color: #051616;
+            background-color: #0A0A0A;
             min-height: 100vh;
             padding: 140px 0 80px;
         }
@@ -214,12 +214,15 @@
                 <h3>1.3 Game Description</h3>
                 <p>Trade Clash is a browser-based sealed-bid auction game where:</p>
                 <ul>
-                    <li>2-4 players compete in real-time auction rooms</li>
-                    <li>Each round presents a "lot" — a bundle of prediction market positions with hidden true value</li>
-                    <li>Players place sealed (hidden) bids within a 30-second timer</li>
-                    <li>The highest bidder wins the lot; profit is calculated as true value minus winning bid</li>
-                    <li>Games consist of 5 rounds; cumulative profit determines the winner</li>
-                    <li>Lot contents are curated from publicly available prediction market data</li>
+                    <li>2-4 players compete in real-time auction rooms on a 3D globe</li>
+                    <li>Each lot bundles 7 real prediction market positions with a hidden true value</li>
+                    <li>Lots are auctioned over 3 "streets" — each street is a 30-second sealed bid round</li>
+                    <li>Each player receives a private "hole card" (one position only they can see)</li>
+                    <li>Additional positions are revealed to all players on Streets 2 and 3</li>
+                    <li>All bids are revealed between streets, creating an information spiral</li>
+                    <li>At least one "burn card" position stays hidden until the final reveal</li>
+                    <li>The highest final-street bidder wins; profit = true value minus winning bid</li>
+                    <li>Rooms persist between lots — players can join/leave freely</li>
                 </ul>
 
                 <h3>1.4 Game Currency</h3>
@@ -239,39 +242,56 @@
             <section class="section" id="game-rules">
                 <h2>2. Game Rules</h2>
 
-                <h3>2.1 Auction Mechanics</h3>
+                <h3>2.1 Auction Structure — Three Streets</h3>
                 <ul>
-                    <li><strong>Sealed Bids</strong>: All bids are hidden until the reveal phase</li>
-                    <li><strong>Highest Bidder Wins</strong>: The player with the highest bid wins the lot each round</li>
-                    <li><strong>Tie Breaking</strong>: Ties are broken by earliest submission timestamp</li>
-                    <li><strong>Timeout Default</strong>: If no bid is submitted within 30 seconds, the player's bid defaults to $0</li>
-                    <li><strong>Overbidding Allowed</strong>: Bidding above the true value results in negative profit (the "winner's curse")</li>
+                    <li><strong>Street 1 — "The Peek"</strong>: Players see category, payout range, and their private hole card. 30-second sealed bid. All bids revealed after.</li>
+                    <li><strong>Street 2 — "The Flip"</strong>: One new position revealed to all. Players know their hole card + 1 shared + all Street 1 bids. 30-second sealed bid. All bids revealed.</li>
+                    <li><strong>Street 3 — "The River"</strong>: One more position revealed. Final 30-second bid. Highest bid wins. No early win.</li>
+                    <li><strong>The Reveal</strong>: All 7 positions exposed (including burn cards). True value calculated. Winner's profit determined.</li>
                 </ul>
 
-                <h3>2.2 Scoring</h3>
+                <h3>2.2 First-Place Win Mechanic</h3>
+                <ul>
+                    <li><strong>Street 1</strong>: If highest bid exceeds second-highest by ≥50%, first place wins immediately. Skip to reveal.</li>
+                    <li><strong>Street 2</strong>: If highest bid exceeds second-highest by ≥20%, first place wins immediately.</li>
+                    <li><strong>Street 3</strong>: No first-place win check. Normal highest-bid auction.</li>
+                </ul>
+
+                <h3>2.3 Bidding Rules</h3>
+                <ul>
+                    <li><strong>Independent Bids</strong>: Each street is a fresh bid. Can go up or down freely.</li>
+                    <li><strong>Bids Revealed</strong>: All bids are shown to all players between streets.</li>
+                    <li><strong>$0 = Pass</strong>: Not a permanent fold. Can bid on later streets.</li>
+                    <li><strong>Timeout Default</strong>: No bid within 30 seconds defaults to $0.</li>
+                    <li><strong>Tie Breaking</strong>: Ties broken by earliest submission timestamp.</li>
+                    <li><strong>Overbidding Allowed</strong>: Bidding above true value results in negative profit (winner's curse).</li>
+                </ul>
+
+                <h3>2.4 Scoring</h3>
                 <ul>
                     <li><strong>Profit Formula</strong>: Profit = True Value - Winning Bid</li>
-                    <li><strong>Winner Only</strong>: Only the winning bidder scores each round; non-winners score 0</li>
-                    <li><strong>Cumulative Scoring</strong>: Total profit across all 5 rounds determines the game winner</li>
-                    <li><strong>Negative Profit</strong>: Overbidding results in negative profit, reducing your cumulative score</li>
+                    <li><strong>Winner Only</strong>: Only the winning bidder scores; non-winners score 0</li>
+                    <li><strong>Cumulative Scoring</strong>: Session leaderboard tracks cumulative profit across lots</li>
+                    <li><strong>Negative Profit</strong>: Overbidding results in negative profit</li>
+                    <li><strong>First-Place Win</strong>: Displayed with a "FIRST PLACE WIN" badge at reveal</li>
                 </ul>
 
-                <h3>2.3 Lot Signals</h3>
-                <p>Each lot displays the following information to help players estimate value:</p>
+                <h3>2.5 Lot Composition</h3>
+                <p>Each lot always contains exactly 7 prediction market positions:</p>
                 <ul>
-                    <li><strong>Category</strong>: Politics, macro, culture, or sports</li>
-                    <li><strong>Drama Score</strong>: 1-5 stars indicating how high-profile the underlying events are</li>
-                    <li><strong>Payout Range</strong>: A deliberately wide bracket containing the true value</li>
-                    <li><strong>Position Count</strong>: Number of hidden prediction market positions in the bundle</li>
-                    <li><strong>Hints</strong>: 1-2 curated clues about position characteristics</li>
+                    <li><strong>Private positions (hole cards)</strong>: 1 per player, dealt at start — only that player sees it</li>
+                    <li><strong>Shared positions</strong>: Revealed to all on Streets 2 and 3</li>
+                    <li><strong>Burn cards</strong>: At least 1 position stays hidden until reveal — makes lots unsolvable</li>
+                    <li><strong>Category</strong>: Politics, macro, culture, sports, geopolitics, emerging markets, entertainment</li>
+                    <li><strong>Payout Range</strong>: A deliberately wide bracket (2-3x wider than true value position)</li>
                 </ul>
 
-                <h3>2.4 Lot Terminology</h3>
+                <h3>2.6 Lot Terminology</h3>
                 <div class="highlight-box">
-                    <p><strong>Glossary</strong>: <code>entry</code> and <code>currentPrice</code> are prediction market probabilities (0.00-1.00). <code>size</code> is dollar notional (the amount staked on that position). True value is calculated as the sum of unrealized gains across all positions in the bundle.</p>
+                    <p><strong>Glossary</strong>: <code>entry</code> and <code>currentPrice</code> are prediction market probabilities (0.00-1.00). <code>size</code> is dollar notional (the amount staked on that position). True value = sum of (currentPrice - entry) &times; size across all 7 positions. Static snapshot at curation time.</p>
                 </div>
 
-                <h3>2.5 Fair Play</h3>
+                <h3>2.7 Fair Play</h3>
                 <ul>
                     <li><strong>No Exploits</strong>: Report bugs, don't abuse them</li>
                     <li><strong>No Bots</strong>: Automated bidding tools are prohibited</li>
@@ -396,7 +416,7 @@
             <div class="footer-signature">
                 <p>By playing Trade Clash, you acknowledge reading, understanding, and agreeing to these Terms.</p>
 
-                <h3>Outprice the Room. Win the Lot.</h3>
+                <h3>Three Streets. Seven Positions. Outprice the Room.</h3>
 
                 <p><strong>&copy; 2026 Seroto Labs. All Rights Reserved. Built on Base.</strong></p>
                 <p><strong>Last Updated:</strong> March 27, 2026</p>

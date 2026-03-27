@@ -1,23 +1,13 @@
 // Trade Clash Interactive Animations
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for navigation and scroll indicator
     initSmoothScrolling();
-
-    // Initialize scroll-triggered animations
     initScrollAnimations();
-
-    // Initialize particle effects
     initParticleEffects();
-
-    // Initialize CTA button interactions
     initCTAButtons();
-
-    // Initialize frequent flicker effects
     initFrequentFlickers();
-
-    // Initialize hero video
     initHeroVideo();
+    initGlobe();
 });
 
 // Smooth scrolling functionality
@@ -225,7 +215,7 @@ function activateMaxChaos() {
     // Temporary extreme animations
     const style = document.createElement('style');
     style.textContent = `
-        .step-card, .game-card {
+        .street-card, .game-card {
             animation: cardPulse 0.5s ease-in-out infinite !important;
         }
 
@@ -244,8 +234,8 @@ function activateMaxChaos() {
         }
 
         .lot-card {
-            border-color: rgba(0, 255, 255, 0.5) !important;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3) !important;
+            border-color: rgba(217, 119, 6, 0.5) !important;
+            box-shadow: 0 0 30px rgba(217, 119, 6, 0.3) !important;
         }
     `;
     document.head.appendChild(style);
@@ -297,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 entry.target.classList.add('animate-in');
 
                 // Add typewriter effect to text elements
-                const textElements = entry.target.querySelectorAll('.section-title, .section-description, .step-title, .game-title');
+                const textElements = entry.target.querySelectorAll('.section-title, .section-description, .street-name, .game-title');
                 textElements.forEach((element, index) => {
                     setTimeout(() => {
                         element.classList.add('typewriter-in');
@@ -473,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             /* Typewriter and punchy effects */
-            .section-title, .section-description, .step-title, .game-title {
+            .section-title, .section-description, .street-name, .game-title {
                 opacity: 0;
                 transform: translateX(-30px);
                 transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -501,22 +491,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             /* Punchy card animations */
-            .step-card, .game-card, .lot-card {
+            .street-card, .game-card, .lot-card {
                 opacity: 0;
                 transform: translateY(60px) scale(0.9) rotateX(15deg);
                 transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             }
 
-            .animate-in .step-card, .animate-in .game-card, .animate-in .lot-card {
+            .animate-in .street-card, .animate-in .game-card, .animate-in .lot-card {
                 opacity: 1;
                 transform: translateY(0) scale(1) rotateX(0deg);
             }
 
-            .animate-in .step-card:nth-child(1) { transition-delay: 0.05s; }
-            .animate-in .step-card:nth-child(2) { transition-delay: 0.1s; }
-            .animate-in .step-card:nth-child(3) { transition-delay: 0.15s; }
-            .animate-in .step-card:nth-child(4) { transition-delay: 0.2s; }
-            .animate-in .step-card:nth-child(5) { transition-delay: 0.25s; }
+            .animate-in .street-card:nth-child(1) { transition-delay: 0.05s; }
+            .animate-in .street-card:nth-child(2) { transition-delay: 0.1s; }
+            .animate-in .street-card:nth-child(3) { transition-delay: 0.15s; }
+            .animate-in .street-card:nth-child(4) { transition-delay: 0.2s; }
+            .animate-in .street-card:nth-child(5) { transition-delay: 0.25s; }
         `;
         document.head.appendChild(animationStyle);
 
@@ -776,5 +766,66 @@ function initHeroVideo() {
 
     if (heroVideo.readyState >= 2) {
         attemptPlay();
+    }
+}
+
+// 3D Globe initialization (Globe.gl via CDN)
+function initGlobe() {
+    const container = document.getElementById('globe-container');
+    if (!container) return;
+
+    // Check if Globe.gl loaded
+    if (typeof Globe === 'undefined') {
+        container.classList.add('fallback');
+        return;
+    }
+
+    // $SIM nation data from globeConfig.ts
+    const regions = [
+        { lat: 45, lng: -100, label: 'AmeriCorp', color: '#1e40af' },
+        { lat: 35, lng: 105, label: 'MoonFactory', color: '#dc2626' },
+        { lat: 50, lng: 10, label: 'BailoutUnion', color: '#1d4ed8' },
+        { lat: 24, lng: 45, label: 'OilCoinEmirate', color: '#fbbf24' },
+        { lat: 0, lng: 20, label: 'AfriCoinAlliance', color: '#16a34a' },
+        { lat: 0, lng: -78, label: 'MercadoBlox', color: '#0ea5e9' },
+        { lat: 0, lng: 110, label: 'NasiHoldings', color: '#06b6d4' },
+        { lat: -25, lng: 133, label: 'OzmineCommonwealth', color: '#d97706' }
+    ];
+
+    try {
+        const globe = Globe()
+            .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+            .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+            .backgroundColor('rgba(0,0,0,0)')
+            .atmosphereColor('#D97706')
+            .atmosphereAltitude(0.15)
+            .pointsData(regions)
+            .pointLat('lat')
+            .pointLng('lng')
+            .pointColor('color')
+            .pointAltitude(0.06)
+            .pointRadius(0.8)
+            .pointsMerge(false)
+            .labelsData(regions)
+            .labelLat('lat')
+            .labelLng('lng')
+            .labelText('label')
+            .labelSize(1.2)
+            .labelColor(() => 'rgba(249, 250, 251, 0.7)')
+            .labelDotRadius(0.4)
+            .labelAltitude(0.01)
+            .width(400)
+            .height(400)
+            (container);
+
+        // Auto-rotate
+        globe.controls().autoRotate = true;
+        globe.controls().autoRotateSpeed = 0.8;
+        globe.controls().enableZoom = false;
+
+        // Set initial camera position
+        globe.pointOfView({ lat: 20, lng: 0, altitude: 2.5 });
+    } catch (e) {
+        container.classList.add('fallback');
     }
 }

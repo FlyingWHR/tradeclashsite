@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRADE CLASH - Sealed-Bid Auction Game on Prediction Markets</title>
-    <meta name="description" content="Trade Clash: Outprice the room. Sealed-bid auctions on real prediction market bundles. 2-4 players. Pure skill.">
+    <title>TRADE CLASH — Sealed-Lot Polymarket Auction Game</title>
+    <meta name="description" content="A multiplayer auction game where players bid on hidden portfolios of real-world prediction market positions — displayed on a 3D globe — and profit by outpricing each other.">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/Logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/Logo.png">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="main-container" id="top">
@@ -31,7 +31,7 @@
             <nav class="navigation">
                 <div class="nav-container">
                     <a href="#top" class="nav-link active">About</a>
-                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#streets" class="nav-link">How It Works</a>
                     <a href="https://t.me/TradeClashSim" target="_blank" class="nav-link">Community</a>
                     <a href="https://dexscreener.com/base/0xad6198206dec2a63b55ec30ae8a358de860b427d" target="_blank" class="nav-link">$SIM TOKEN</a>
                 </div>
@@ -43,12 +43,12 @@
                     <span class="title-line">Trade</span>
                     <span class="title-line">Clash</span>
                 </h1>
-                <p class="hero-subtitle">Outprice the room. Win the lot.</p>
+                <p class="hero-subtitle">Bid on hidden prediction market bundles. Outprice the room on a 3D globe.</p>
             </div>
 
             <!-- CTA Button -->
             <div class="hero-cta">
-                <a href="#" class="cta-button primary">COMING SOON <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></a>
+                <a href="#" class="cta-button primary">COMING SOON <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></a>
             </div>
 
             <!-- Keep Scrolling Indicator -->
@@ -62,65 +62,112 @@
             <div class="section-container">
                 <div class="tldr-content">
                     <div class="tldr-image">
-                        <img src="images/cta-background.png" alt="Sealed Auction Lots" />
+                        <img src="images/cta-background.png" alt="Trade Clash Globe" />
                     </div>
                     <div class="tldr-text">
                         <p class="description-text">
-                            <em>Hidden lots.</em> Sealed bids. <em>One winner.</em> Overpay and you lose. <em>Skill pays.</em>
+                            <em>Three streets.</em> Seven positions. <em>Sealed bids.</em> Outprice or overpay. <em>The globe decides.</em>
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- How It Works Section -->
-        <section class="how-it-works-section" id="how-it-works">
+        <!-- Three Streets Section -->
+        <section class="streets-section" id="streets">
             <div class="section-container">
                 <div class="section-header centered">
-                    <h2 class="section-title">HOW IT WORKS</h2>
+                    <h2 class="section-title">THREE STREETS</h2>
                     <p class="section-description">
-                        Sealed-bid auctions on real prediction market bundles. 2-4 players. 5 rounds. Best pricer wins.
+                        Every lot is a 7-position bundle of real prediction market positions. Three rounds of sealed bidding. Progressive information reveal. The best pricer wins.
                     </p>
                 </div>
 
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <div class="step-number">01</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Create a Room</h3>
-                            <p class="step-description">Share a link. 2-4 players join. No account needed.</p>
-                        </div>
+                <div class="streets-grid">
+                    <div class="street-card">
+                        <span class="street-label">Street 1</span>
+                        <h3 class="street-name">The Peek</h3>
+                        <p class="street-info">You see the category, payout range, and your private "hole card" — one position only you can see. Everyone bids blind. All bids revealed after.</p>
+                        <p class="street-action">30s sealed bid &middot; All bids revealed after</p>
+                        <span class="first-place-badge">FIRST-PLACE WIN: &ge;50% GAP</span>
                     </div>
 
-                    <div class="step-card">
-                        <div class="step-number">02</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Read the Lot</h3>
-                            <p class="step-description">Category, drama score, payout range, hints. The true value is hidden.</p>
-                        </div>
+                    <div class="street-card">
+                        <span class="street-label">Street 2</span>
+                        <h3 class="street-name">The Flip</h3>
+                        <p class="street-info">One new position revealed to all players. You now know your hole card, one shared position, and everyone's Street 1 bids. Reprice accordingly.</p>
+                        <p class="street-action">30s sealed bid &middot; All bids revealed after</p>
+                        <span class="first-place-badge">FIRST-PLACE WIN: &ge;20% GAP</span>
                     </div>
 
-                    <div class="step-card">
-                        <div class="step-number">03</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Place Your Bid</h3>
-                            <p class="step-description">30 seconds. Sealed. No one sees what you bid.</p>
-                        </div>
+                    <div class="street-card">
+                        <span class="street-label">Street 3</span>
+                        <h3 class="street-name">The River</h3>
+                        <p class="street-info">One more position revealed to all. Final sealed bid. Highest bid wins the lot. No early win — this is the showdown.</p>
+                        <p class="street-action">30s final bid &middot; Highest bid wins</p>
                     </div>
 
-                    <div class="step-card">
-                        <div class="step-number">04</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Reveal</h3>
-                            <p class="step-description">Highest bidder wins. True value exposed. Profit = Value - Bid.</p>
-                        </div>
+                    <div class="street-card reveal-card">
+                        <span class="street-label">After Street 3</span>
+                        <h3 class="street-name">The Reveal</h3>
+                        <p class="street-info">All 7 positions exposed — including burn cards nobody saw. True value calculated. Profit = trueValue &minus; winningBid. Overbid = negative profit. The winner's curse is real.</p>
+                        <p class="street-action">Profit = trueValue &minus; winningBid &middot; Burn cards revealed</p>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="step-card">
-                        <div class="step-number">05</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Best Pricer Wins</h3>
-                            <p class="step-description">5 rounds. Cumulative profit. Overbid = negative. Discipline beats greed.</p>
+        <!-- Globe Section -->
+        <section class="globe-section" id="globe">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">THE GLOBE</h2>
+                    <p class="section-description">
+                        16 simulated economies. Real prediction markets. Every lot originates from a nation on the globe.
+                    </p>
+                </div>
+
+                <div class="globe-content">
+                    <div class="globe-visual" id="globe-container"></div>
+
+                    <div class="globe-details">
+                        <div class="region-list">
+                            <div class="region-item">
+                                <span class="region-dot americorp"></span>
+                                <span class="region-name">AmeriCorp</span> N. America
+                            </div>
+                            <div class="region-item">
+                                <span class="region-dot moonfactory"></span>
+                                <span class="region-name">MoonFactory</span> China
+                            </div>
+                            <div class="region-item">
+                                <span class="region-dot bailoutunion"></span>
+                                <span class="region-name">BailoutUnion</span> Europe
+                            </div>
+                            <div class="region-item">
+                                <span class="region-dot oilcoinemirate"></span>
+                                <span class="region-name">OilCoinEmirate</span> Middle East
+                            </div>
+                            <div class="region-item">
+                                <span class="region-dot africoin"></span>
+                                <span class="region-name">AfriCoinAlliance</span> Africa
+                            </div>
+                            <div class="region-item">
+                                <span class="region-dot mercadoblox"></span>
+                                <span class="region-name">MercadoBlox</span> Latin America
+                            </div>
+                            <div class="region-item">
+                                <span class="region-dot nasiholdings"></span>
+                                <span class="region-name">NasiHoldings</span> SE Asia
+                            </div>
+                            <div class="region-item">
+                                <span class="region-dot ozmine"></span>
+                                <span class="region-name">OzmineCommonwealth</span> Australia
+                            </div>
+                        </div>
+
+                        <div class="globe-dashboard-note">
+                            Active auctions pulse from their nation of origin. Between lots, the globe shows live market activity across all 16 $SIM economies — each with its own leaders, markets, and chaos.
                         </div>
                     </div>
                 </div>
@@ -133,7 +180,7 @@
                 <div class="section-header centered">
                     <h2 class="section-title">ANATOMY OF A LOT</h2>
                     <p class="section-description">
-                        Each lot is a bundle of real prediction market positions. The signals help you estimate value. The bid tests your conviction.
+                        Every lot bundles 7 real prediction market positions. Some you see. Some are shared. Some are hidden. The signals help you estimate value. The streets test your conviction.
                     </p>
                 </div>
 
@@ -152,16 +199,26 @@
                         <div class="lot-details">
                             <div class="lot-stat">
                                 <span class="lot-label">Payout Range</span>
-                                <span class="lot-value">$120 - $280</span>
+                                <span class="lot-value">$180 - $420</span>
                             </div>
                             <div class="lot-stat">
                                 <span class="lot-label">Positions</span>
-                                <span class="lot-value">4 hidden</span>
+                                <span class="lot-value">7 total</span>
                             </div>
                         </div>
-                        <div class="lot-hints">
-                            <div class="lot-hint">"avg entry: 40-55c"</div>
-                            <div class="lot-hint">"one contrarian position"</div>
+                        <div class="lot-positions">
+                            <div class="lot-position-row">
+                                <span class="position-dot private"></span>
+                                Your hole card (1 position, only you see)
+                            </div>
+                            <div class="lot-position-row">
+                                <span class="position-dot shared"></span>
+                                Shared positions (revealed on Streets 2 &amp; 3)
+                            </div>
+                            <div class="lot-position-row">
+                                <span class="position-dot burn"></span>
+                                Burn cards (nobody sees until reveal)
+                            </div>
                         </div>
                         <div class="lot-bid-area">
                             <div class="lot-bid-label">YOUR BID</div>
@@ -172,20 +229,20 @@
 
                     <div class="lot-explanation">
                         <div class="lot-explain-item">
-                            <h4>Category</h4>
-                            <p>Politics, macro, culture, or sports. Sets the context for the hidden positions.</p>
+                            <h4>Hole Card</h4>
+                            <p>At the start of each lot, you're dealt one private position — fully revealed (market, side, entry, price, size). Only you can see it. This is your information edge.</p>
                         </div>
                         <div class="lot-explain-item">
-                            <h4>Drama Score</h4>
-                            <p>1-5 stars. How high-profile and divisive the underlying events are. Higher drama = harder to price.</p>
+                            <h4>Shared Positions</h4>
+                            <p>One position flips for everyone on Street 2, another on Street 3. Combined with your hole card, you see more of the lot's true value as streets progress.</p>
+                        </div>
+                        <div class="lot-explain-item">
+                            <h4>Burn Cards</h4>
+                            <p>At least one position stays hidden until the reveal. Nobody sees it. This makes every lot unsolvable — you're always pricing under uncertainty.</p>
                         </div>
                         <div class="lot-explain-item">
                             <h4>Payout Range</h4>
-                            <p>A deliberately wide bracket. The true value falls somewhere inside. Your job: narrow it down.</p>
-                        </div>
-                        <div class="lot-explain-item">
-                            <h4>Hints</h4>
-                            <p>Curated clues about position entry prices and mix. Enough to estimate, not enough to be certain.</p>
+                            <p>A deliberately wide bracket (2-3x wider than needed). The true value falls somewhere inside. Your job: narrow it down with the signals you have.</p>
                         </div>
                     </div>
                 </div>
@@ -207,7 +264,7 @@
                         <div class="game-number">GAME 1</div>
                         <h3 class="game-title">Price the Lot</h3>
                         <p class="game-description">
-                            Read the signals. Estimate the value. How close can you get? This is information analysis — the more you understand prediction markets, the sharper your edge.
+                            Read the signals. Use your hole card. Watch positions flip on each street. Estimate the true value. The more you understand prediction markets, the sharper your edge.
                         </p>
                     </div>
 
@@ -215,7 +272,7 @@
                         <div class="game-number">GAME 2</div>
                         <h3 class="game-title">Price the Players</h3>
                         <p class="game-description">
-                            What will they bid? Are they aggressive? Cautious? Bluffing? The real long-term skill is reading the room, not just reading the lot.
+                            All bids are revealed between streets. Who overbid on Street 1? Who's holding back? Who has a strong hole card? The real long-term skill is reading betting patterns, not just reading the lot.
                         </p>
                     </div>
                 </div>
@@ -230,8 +287,7 @@
                     <img src="images/LogoTextWhite.png" alt="Trade Clash" class="cta-logo-img">
                 </div>
                 <div class="cta-main">
-                    <h2 class="cta-title"></h2>
-                    <a href="#" class="cta-button secondary">COMING SOON <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></a>
+                    <a href="#" class="cta-button secondary">COMING SOON <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></a>
                 </div>
             </div>
         </section>
@@ -245,14 +301,14 @@
                     </div>
                     <div class="footer-column">
                         <a href="https://x.com/TradeClashAI" target="_blank" class="footer-link">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
                         </a>
                     </div>
                     <div class="footer-column">
                         <a href="https://t.me/TradeClashSim" target="_blank" class="footer-link">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;">
                                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                             </svg>
                         </a>
@@ -268,6 +324,7 @@
         </footer>
     </div>
 
+    <script src="//unpkg.com/globe.gl"></script>
     <script src="script.js"></script>
 </body>
 </html>
