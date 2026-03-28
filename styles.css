@@ -5,7 +5,7 @@
          url('./fonts/Hanson-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
-    font-display: block;
+    font-display: swap;
 }
 
 /* ============================================
@@ -23,6 +23,7 @@
 
     /* Accents */
     --accent-primary: #D97706;
+    --accent-hover: #F59E0B;
     --accent-secondary: #0F766E;
     --color-positive: #10B981;
     --color-negative: #EF4444;
@@ -80,6 +81,32 @@ em {
     font-weight: 700;
     font-size: 1.1em;
     color: var(--accent-primary);
+}
+
+/* Visually hidden — accessible to screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus-visible outlines for keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-tag);
+}
+
+/* Typewriter visual span */
+.typewriter-visual {
+    display: inline;
 }
 
 /* Section Container */
@@ -144,6 +171,7 @@ em {
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
+    will-change: transform;
 }
 
 .hero-background::before {
@@ -184,7 +212,7 @@ em {
     backdrop-filter: blur(16px);
     width: 100%;
     height: 160px;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, height 0.3s ease;
 }
 
 .nav-container {
@@ -209,7 +237,7 @@ em {
     line-height: 140%;
     text-decoration: none;
     color: var(--text-secondary);
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, background 0.2s ease;
 }
 
 .nav-link.active {
@@ -279,9 +307,9 @@ em {
     font-weight: 700;
     font-size: 16px;
     letter-spacing: 0.05em;
-    color: #000000;
+    color: var(--bg-primary);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -289,20 +317,20 @@ em {
 }
 
 .cta-button:hover {
-    background: #F59E0B;
-    border-color: #F59E0B;
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
     box-shadow: 0 0 24px rgba(217, 119, 6, 0.4);
     transform: translateY(-2px);
 }
 
 .cta-button.primary {
     background: var(--accent-primary);
-    color: #000000;
+    color: var(--bg-primary);
 }
 
 .cta-button.secondary {
     background: var(--accent-primary);
-    color: #000000;
+    color: var(--bg-primary);
     font-size: 16px;
 }
 
@@ -323,6 +351,17 @@ em {
     z-index: 5;
     opacity: 0.3;
     animation: bounce 2s infinite;
+    background: none;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.scroll-indicator:focus-visible {
+    opacity: 0.8;
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 4px;
+    border-radius: var(--radius-tag);
 }
 
 .chevron-down {
@@ -356,6 +395,7 @@ em {
 .tldr-image {
     flex: none;
     width: 560px;
+    max-width: 100%;
     height: 374px;
     position: sticky;
     top: 0;
@@ -412,7 +452,7 @@ em {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .street-card:hover {
@@ -767,7 +807,7 @@ em {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .game-card:hover {
@@ -802,7 +842,9 @@ em {
    ============================================ */
 .cta-section {
     background-color: var(--bg-primary);
-    height: 800px;
+    min-height: 600px;
+    height: 100vh;
+    max-height: 800px;
     position: relative;
     display: flex;
     align-items: center;
@@ -918,6 +960,50 @@ em {
 }
 
 /* ============================================
+   MOBILE BOTTOM NAV
+   ============================================ */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--bg-glass);
+    border-top: 1px solid var(--border-default);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 8px 0;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+.mobile-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 0;
+    min-height: 44px;
+    min-width: 44px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-link.active {
+    color: var(--accent-primary);
+}
+
+.mobile-nav-link svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 1440px) {
@@ -997,14 +1083,27 @@ em {
 
     .hero-subtitle {
         font-size: 16px;
+        padding: 0 16px;
     }
 
     .section-title {
         font-size: 28px;
     }
 
+    /* Hide desktop nav, show mobile bottom nav */
     .navigation {
         display: none;
+    }
+
+    .mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    /* Add bottom padding so content doesn't hide behind mobile nav */
+    .footer {
+        padding: 40px 20px 100px;
     }
 
     .street-card {
@@ -1029,8 +1128,53 @@ em {
         font-size: 36px;
     }
 
-    .footer {
-        padding: 40px 20px;
+    /* CTA section responsive */
+    .cta-section {
+        min-height: 500px;
+        max-height: none;
+        height: auto;
+    }
+
+    .cta-content {
+        position: relative;
+        height: auto;
+        padding: 60px 20px 80px;
+    }
+
+    .cta-logo-img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    /* Section padding reduction */
+    .tldr-section {
+        padding: 80px 0 60px;
+    }
+
+    .streets-section,
+    .globe-section,
+    .lot-section,
+    .two-games-section {
+        padding: 80px 0;
+    }
+
+    /* Description text */
+    .description-text {
+        font-size: 20px;
+    }
+
+    .section-description {
+        font-size: 16px;
+    }
+
+    /* Footer links stack better on mobile */
+    .footer-links {
+        justify-content: center;
+    }
+
+    .footer-link svg {
+        width: 28px;
+        height: 28px;
     }
 }
 
@@ -1065,4 +1209,168 @@ html {
 
 .main-container > section {
     animation: fadeIn 0.6s ease-out;
+}
+
+/* ============================================
+   DELIGHT — Micro-interactions & personality
+   ============================================ */
+
+/* Card tilt perspective container */
+.street-card,
+.game-card,
+.lot-card {
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+/* Region dot radar ping on hover */
+.region-item:hover .region-dot {
+    animation: radarPing 0.8s ease-out;
+}
+
+.region-dot {
+    position: relative;
+}
+
+.region-item:hover .region-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: inherit;
+    animation: radarPing 1s ease-out;
+}
+
+@keyframes radarPing {
+    0% {
+        box-shadow: 0 0 0 0 currentColor;
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0 0 0 12px transparent;
+        opacity: 0;
+    }
+}
+
+/* CTA button satisfying press */
+.cta-button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 0 30px rgba(217, 119, 6, 0.6), inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.05s, box-shadow 0.05s;
+}
+
+/* Section scanline reveal */
+.section-scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.section-scanline.sweep {
+    animation: scanlineSweep 0.6s ease-out forwards;
+}
+
+@keyframes scanlineSweep {
+    0% {
+        top: 0;
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Lot card bid number cycling */
+.lot-bid-input .cycling {
+    display: inline-block;
+    min-width: 1ch;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Street card glitch-in stagger */
+.street-card .street-label,
+.street-card .first-place-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+.street-card .street-label::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-primary);
+    transform: translateX(101%);
+    pointer-events: none;
+}
+
+.animate-in .street-card .street-label::after {
+    animation: glitchWipe 0.4s ease-out forwards;
+}
+
+.animate-in .street-card:nth-child(1) .street-label::after { animation-delay: 0.15s; }
+.animate-in .street-card:nth-child(2) .street-label::after { animation-delay: 0.25s; }
+.animate-in .street-card:nth-child(3) .street-label::after { animation-delay: 0.35s; }
+.animate-in .street-card:nth-child(4) .street-label::after { animation-delay: 0.45s; }
+
+@keyframes glitchWipe {
+    0% { transform: translateX(-101%); }
+    45% { transform: translateX(0%); }
+    55% { transform: translateX(0%); }
+    100% { transform: translateX(101%); }
+}
+
+/* Nav link active transition — amber underline slide */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--accent-primary);
+    transition: width 0.25s ease, left 0.25s ease;
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+    width: 60%;
+    left: 20%;
+}
+
+/* Reduced motion: disable all delight animations */
+@media (prefers-reduced-motion: reduce) {
+    .region-item:hover .region-dot::after,
+    .section-scanline.sweep,
+    .animate-in .street-card .street-label::after {
+        animation: none;
+    }
+
+    .cta-button:active {
+        transform: none;
+    }
+
+    .nav-link::after {
+        transition: none;
+    }
 }
