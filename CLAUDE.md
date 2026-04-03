@@ -11,7 +11,7 @@ Trade Clash is a static marketing website for a real-news-powered multi-agent ec
 - **Run locally**: `python -m http.server` (or any static file server), then open `http://localhost:8000`
 - **Deploy**: Push to `main` — GitHub Actions deploys to GitHub Pages automatically
 - **Live site**: https://tradeclash.xyz (custom domain via CNAME file)
-- **Simulation app**: https://sim.tradeclash.xyz/ (separate project, linked from CTA)
+- **Docs**: https://serotolabs.gitbook.io/tradeclash (GitBook, linked from nav)
 
 ## Architecture
 

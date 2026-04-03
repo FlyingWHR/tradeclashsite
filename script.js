@@ -750,7 +750,7 @@ function initGlobe() {
         return;
     }
 
-    // $SIM nation data from globeConfig.ts
+    // Nation data from globeConfig.ts
     const regions = [
         { lat: 45, lng: -100, label: 'AmeriCorp', color: '#1e40af' },
         { lat: 35, lng: 105, label: 'MoonFactory', color: '#dc2626' },
@@ -961,5 +961,5 @@ function initConsoleEasterEgg() {
 
     console.log('%c\u2588\u2588\u2588 TRADE CLASH \u2588\u2588\u2588', styles);
     console.log('%cYou found the terminal. Good instincts.', subtleStyles);
-    console.log('%chttps://t.me/TradeClashSim', subtleStyles);
+    console.log('%chttps://serotolabs.gitbook.io/tradeclash', subtleStyles);
 }
